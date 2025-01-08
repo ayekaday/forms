@@ -16,8 +16,9 @@
       <input type="text" v-model="skill" @keyup.alt="addSkill" />
     </div>
 
-    <div v-for="skill in skills" :key="skill">
+    <div v-for="skill in skills" :key="skill" class="showSkill">
       {{ skill }}
+      <span @click="deleteSkill(skill)" class="cross">&#x2718;</span>
     </div>
     <!-- single checkbox -->
     <div>
@@ -41,10 +42,15 @@ export default {
   },
   methods: {
     addSkill(e) {
-      if (e.key === ",") {
+      if (e.key === "," && this.skill) {
         this.skills.push(this.skill);
         this.skill = "";
       }
+    },
+    deleteSkill(skill) {
+      this.skills = this.skills.filter((loopSkill) => {
+        return loopSkill != skill;
+      });
     },
   },
 };
@@ -79,6 +85,8 @@ select {
   border: none;
   background-color: rgb(245, 243, 243);
   border-bottom: 1px solid grey;
+  font-size: 11px;
+  text-transform: uppercase;
 }
 input[type="checkbox"] {
   display: inline-block;
@@ -86,5 +94,16 @@ input[type="checkbox"] {
   position: relative;
   margin-right: 10px;
   top: 10px;
+}
+.cross {
+  font-size: 11px;
+  cursor: pointer;
+  color: red;
+  border: none;
+}
+.showSkill {
+  font-size: 11px;
+  margin-top: 12px;
+  text-transform: uppercase;
 }
 </style>
