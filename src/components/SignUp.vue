@@ -4,20 +4,27 @@
     <input type="email" required v-model="email" />
     <label for="">Password</label>
     <input type="password" required v-model="password" />
-    <label for="">Role:</label>
+    <label for="">Role</label>
     <select v-model="role">
       <option value="dev">Web developer</option>
       <option value="ui">Web desinger</option>
       <option value="pm">Project Manager</option>
     </select>
+
     <div>
-      <input type="checkbox" />
+      <label for="">skills</label>
+      <input type="text" v-model="skill" @keyup.alt="addSkill" />
+    </div>
+
+    <div v-for="skill in skills" :key="skill">
+      {{ skill }}
+    </div>
+    <!-- single checkbox -->
+    <div>
+      <input type="checkbox" v-model="accept" />
       <label for="">Accept terms and conditions</label>
     </div>
   </form>
-  <p>email-{{ email }}</p>
-  <p>pw-{{ password }}</p>
-  <p>role-{{ role }}</p>
 </template>
 
 <script>
@@ -27,7 +34,18 @@ export default {
       email: "@gmail.com",
       password: "",
       role: "",
+      accept: false,
+      skill: "",
+      skills: [],
     };
+  },
+  methods: {
+    addSkill(e) {
+      if (e.key === ",") {
+        this.skills.push(this.skill);
+        this.skill = "";
+      }
+    },
   },
 };
 </script>
@@ -35,8 +53,8 @@ export default {
 <style>
 form {
   background-color: rgb(245, 243, 243);
-  width: 300px;
-  height: 300px;
+  width: 350px;
+  height: 400px;
   padding: 40px;
   margin: 30px;
   text-align: left;
@@ -47,7 +65,7 @@ label {
   color: cadetblue;
   display: inline-block;
   font-size: 11px;
-  margin: 20px 0 0;
+  margin: 10px 0 0;
   font-weight: bold;
   text-transform: uppercase;
 }
