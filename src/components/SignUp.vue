@@ -1,48 +1,79 @@
 <template>
   <form>
-    <label for="">Email</label>
-    <input type="email" required v-model="email" />
-    <label for="">Password</label>
-    <input type="password" required v-model="password" />
+    <label for="">email</label>
+    <input type="email" v-model="email" />
+    <label for="">password</label>
+    <input type="password" v-model="password" />
     <label for="">Role</label>
-    <select v-model="role">
-      <option value="dev">Web developer</option>
-      <option value="ui">Web desinger</option>
-      <option value="pm">Project Manager</option>
-    </select>
-
     <div>
-      <label for="">skills</label>
+      <select v-model="role">
+        <option value="dev">Web Devloper</option>
+        <option value="desinger">Web Desinger</option>
+        <option value="pm">Project Manager</option>
+        <option value="owner">IT company owner</option>
+      </select>
+    </div>
+    <label for="">Skills</label>
+    <div>
       <input type="text" v-model="skill" @keyup.alt="addSkill" />
     </div>
-
     <div v-for="skill in skills" :key="skill" class="showSkill">
       {{ skill }}
-      <span @click="deleteSkill(skill)" class="cross">&#x2718;</span>
+      <span class="cross" @click="deleteSkill(skill)">&#x2717;</span>
     </div>
     <!-- single checkbox -->
     <div>
-      <input type="checkbox" v-model="accept" />
-      <label for="">Accept terms and conditions</label>
+      <input type="checkbox" /><span class="check"
+        >Don’t have an account?
+      </span>
+    </div>
+
+    <!-- multiple checkbox -->
+    <div>
+      <input type="checkbox" v-model="names" value="koko" /><span class="check"
+        >koko
+      </span>
+    </div>
+    <div>
+      <input type="checkbox" v-model="names" value="maymay" />
+      <span class="check">maymay </span>
+    </div>
+    <div>
+      <input type="checkbox" v-model="names" value="yuki" />
+      <span class="check">yuki </span>
+    </div>
+    <div>
+      <input type="checkbox" v-model="names" value="ayekaday" />
+      <span class="check">ayekaday </span>
+    </div>
+    <div>
+      <input type="checkbox" v-model="names" value="yukihana" />
+      <span class="check">yukihana </span>
     </div>
   </form>
+  <p>email:{{ email }}</p>
+  <p>password:{{ password }}</p>
+  <p>role:{{ role }}</p>
+  <p>skill:{{ skill }}</p>
+  <p>skill:{{ skill }}</p>
+  <p>names:{{ names }}</p>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      email: "@gmail.com",
+      email: "",
       password: "",
-      role: "",
-      accept: false,
+      role: " ",
       skill: "",
       skills: [],
+      names: [],
     };
   },
   methods: {
     addSkill(e) {
-      if (e.key === "," && this.skill) {
+      if (e.key === ",") {
         this.skills.push(this.skill);
         this.skill = "";
       }
@@ -58,52 +89,53 @@ export default {
 
 <style>
 form {
-  background-color: rgb(245, 243, 243);
-  width: 350px;
-  height: 400px;
-  padding: 40px;
-  margin: 30px;
+  background-color: rgb(236, 239, 241);
+  width: 400px;
+  height: 500px;
+  text-transform: uppercase;
+  margin: 30px auto;
+  padding: 20px;
   text-align: left;
   border-radius: 10px;
-  margin: 30px auto;
 }
 label {
-  color: cadetblue;
+  margin: 20px 0 0 10px;
   display: inline-block;
-  font-size: 11px;
-  margin: 10px 0 0;
   font-weight: bold;
-  text-transform: uppercase;
+  font-size: 12px;
+  color: rgb(5, 102, 97);
+  font-weight: bold;
 }
 input,
 select {
   display: block;
-  margin: 5px 0 15px;
+  margin: 2px 0 0 10px;
   width: 100%;
   height: 30px;
-  color: rgb(22, 21, 1);
+  background-color: rgb(236, 239, 241);
   border: none;
-  background-color: rgb(245, 243, 243);
-  border-bottom: 1px solid grey;
-  font-size: 11px;
+  border-bottom: 1px solid rgb(202, 198, 198);
   text-transform: uppercase;
+  color: steelblue;
+  font-weight: bold;
 }
 input[type="checkbox"] {
-  display: inline-block;
-  width: 10px;
-  position: relative;
-  margin-right: 10px;
+  width: 15px;
   top: 10px;
+  display: inline;
+  position: relative;
+}
+.check {
+  font-size: 15px;
+  margin-left: 3px;
+  color: rgb(134, 9, 26);
 }
 .cross {
-  font-size: 11px;
-  cursor: pointer;
   color: red;
-  border: none;
+  cursor: pointer;
 }
 .showSkill {
-  font-size: 11px;
-  margin-top: 12px;
-  text-transform: uppercase;
+  margin-left: 10px;
+  color: rgb(53, 35, 134);
 }
 </style>
