@@ -29,27 +29,30 @@
     </div>
 
     <!-- multiple checkbox -->
-    <div>
-      <input type="checkbox" v-model="names" value="koko" /><span class="check"
-        >koko
-      </span>
-    </div>
-    <div>
-      <input type="checkbox" v-model="names" value="maymay" />
-      <span class="check">maymay </span>
-    </div>
-    <div>
-      <input type="checkbox" v-model="names" value="yuki" />
-      <span class="check">yuki </span>
-    </div>
-    <div>
-      <input type="checkbox" v-model="names" value="ayekaday" />
-      <span class="check">ayekaday </span>
-    </div>
-    <div>
-      <input type="checkbox" v-model="names" value="yukihana" />
-      <span class="check">yukihana </span>
-    </div>
+    <!-- <div>
+      <div>
+        <input type="checkbox" v-model="names" value="koko" /><span
+          class="check"
+          >koko
+        </span>
+      </div>
+      <div>
+        <input type="checkbox" v-model="names" value="maymay" />
+        <span class="check">maymay </span>
+      </div>
+      <div>
+        <input type="checkbox" v-model="names" value="yuki" />
+        <span class="check">yuki </span>
+      </div>
+      <div>
+        <input type="checkbox" v-model="names" value="ayekaday" />
+        <span class="check">ayekaday </span>
+      </div>
+      <div>
+        <input type="checkbox" v-model="names" value="yukihana" />
+        <span class="check">yukihana </span>
+      </div>
+    </div> -->
   </form>
   <p>email:{{ email }}</p>
   <p>password:{{ password }}</p>
