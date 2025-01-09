@@ -115,7 +115,7 @@ select {
   background-color: rgb(236, 239, 241);
   border: none;
   border-bottom: 1px solid rgb(202, 198, 198);
-  text-transform: uppercase;
+
   color: steelblue;
   font-weight: bold;
 }
