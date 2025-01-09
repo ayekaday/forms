@@ -1,9 +1,10 @@
 <template>
-  <form>
+  <form @submit.prevent="submit">
     <label for="">email</label>
     <input type="email" v-model="email" />
     <label for="">password</label>
     <input type="password" v-model="password" />
+    <p v-if="pwerror" class="pwerror">{{ pwerror }}</p>
     <label for="">Role</label>
     <div>
       <select v-model="role">
@@ -26,6 +27,10 @@
       <input type="checkbox" /><span class="check"
         >Don’t have an account?
       </span>
+    </div>
+
+    <div class="aline">
+      <button type="submit" class="submit">create accout</button>
     </div>
 
     <!-- multiple checkbox -->
@@ -72,6 +77,7 @@ export default {
       skill: "",
       skills: [],
       names: [],
+      pwerror: "",
     };
   },
   methods: {
@@ -86,6 +92,13 @@ export default {
         return loopSkill != skill;
       });
     },
+    submit() {
+      const specialChar = /[!@#$%^&*(),.?":{}|<>]/;
+      if (this.pwerror.length < 8 && !specialChar.test(this.password)) {
+        this.pwerror =
+          "Your password must be at least 8 characters and contain a special character!";
+      } else alert("Form submitted successfully!");
+    },
   },
 };
 </script>
@@ -95,7 +108,6 @@ form {
   background-color: rgb(236, 239, 241);
   width: 400px;
   height: 500px;
-  text-transform: uppercase;
   margin: 30px auto;
   padding: 20px;
   text-align: left;
@@ -140,5 +152,20 @@ input[type="checkbox"] {
 .showSkill {
   margin-left: 10px;
   color: rgb(53, 35, 134);
+}
+.submit {
+  background-color: dodgerblue;
+  border-radius: 10px;
+  padding: 7px;
+  color: blanchedalmond;
+}
+.aline {
+  text-align: center;
+  margin-top: 15px;
+}
+.pwerror {
+  color: red;
+  font-weight: bold;
+  margin-left: 10px;
 }
 </style>
